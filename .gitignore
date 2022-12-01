@@ -1,0 +1,11 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+.idea/.name
+.idea/kotlinc.xml
+*.iws
+*.iml
+*.ipr
+out/
+
