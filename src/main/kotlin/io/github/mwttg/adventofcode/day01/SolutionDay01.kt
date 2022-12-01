@@ -1,7 +1,9 @@
 package io.github.mwttg.adventofcode.day01
 
-import io.github.mwttg.adventofcode.utils.TextFile
+import java.io.File
 import kotlin.system.measureTimeMillis
+
+private const val FILENAME = "./puzzle-inputs/day01/input.txt"
 
 fun main() {
     var maxCalories: Int
@@ -10,14 +12,13 @@ fun main() {
 
     var combinedCalories: Int
     val timePuzzle2 = measureTimeMillis {
-        val sorted = solvePuzzle02()
-        combinedCalories = sorted[0] + sorted[1] + sorted[2]
+        combinedCalories = solvePuzzle02().take(3).sum()
     }
     println("The combined Calories amount of the top three Elves is $combinedCalories. This took $timePuzzle2 ms.")
-
 }
 
-fun solvePuzzle01() = TextFile.readFromResources("day01/input.txt")
+fun solvePuzzle01() = File(FILENAME)
+    .readLines()
     .foldIndexed(mutableListOf(mutableListOf<Int>())) { _, acc, item ->
         if (item == "") {
             acc.add(mutableListOf())
@@ -28,7 +29,8 @@ fun solvePuzzle01() = TextFile.readFromResources("day01/input.txt")
     }
     .maxOf { listOfCalories -> listOfCalories.sum() }
 
-fun solvePuzzle02() = TextFile.readFromResources("day01/input.txt")
+fun solvePuzzle02() = File(FILENAME)
+    .readLines()
     .foldIndexed(mutableListOf(mutableListOf<Int>())) { _, acc, item ->
         if (item == "") {
             acc.add(mutableListOf())
