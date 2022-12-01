@@ -6,28 +6,26 @@ import kotlin.system.measureTimeMillis
 private const val FILENAME = "./puzzle-inputs/day01/input.txt"
 
 fun main() {
-    var maxCalories: Int
-    val timePuzzle1 = measureTimeMillis { maxCalories = solvePuzzle01() }
-    println("Most calories carried by an Elf is $maxCalories. This took $timePuzzle1 ms.")
+    val max: Int
+    val time1 = measureTimeMillis { max = getMaxCalories() }
+    println("Most calories carried by an Elf is $max. This took $time1 ms.")
 
-    var combinedCalories: Int
-    val timePuzzle2 = measureTimeMillis {
-        combinedCalories = solvePuzzle02()
-    }
-    println("The combined Calories amount of the top three Elves is $combinedCalories. This took $timePuzzle2 ms.")
+    val combined: Int
+    val time2 = measureTimeMillis { combined = getCombinedCalories() }
+    println("The combined Calories amount of the top three Elves is $combined. This took $time2 ms.")
 }
 
-fun solvePuzzle01() = File(FILENAME)
+fun getMaxCalories() = File(FILENAME)
     .readLines()
-    .foldIndexed(mutableListOf(mutableListOf<Int>())) { _, acc, item ->
+    .fold(mutableListOf(mutableListOf<Int>())) { acc, item ->
         if (item.isBlank()) acc.add(mutableListOf()) else acc.last().add(item.toInt())
         acc
     }
     .maxOf { it.sum() }
 
-fun solvePuzzle02() = File(FILENAME)
+fun getCombinedCalories() = File(FILENAME)
     .readLines()
-    .foldIndexed(mutableListOf(mutableListOf<Int>())) { _, acc, item ->
+    .fold(mutableListOf(mutableListOf<Int>())) { acc, item ->
         if (item.isBlank()) acc.add(mutableListOf()) else acc.last().add(item.toInt())
         acc
     }
