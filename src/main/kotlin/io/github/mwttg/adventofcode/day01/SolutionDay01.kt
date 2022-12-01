@@ -12,7 +12,7 @@ fun main() {
 
     val combined: Int
     val time2 = measureTimeMillis { combined = getCombinedCalories() }
-    println("The combined Calories amount of the top three Elves is $combined. This took $time2 ms.")
+    println("The combined calories of the top three Elves is $combined. This took $time2 ms.")
 }
 
 fun getMaxCalories() = File(FILENAME)
