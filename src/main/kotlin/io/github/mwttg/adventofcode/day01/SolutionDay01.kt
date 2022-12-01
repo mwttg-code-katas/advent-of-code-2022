@@ -20,11 +20,7 @@ fun main() {
 fun solvePuzzle01() = File(FILENAME)
     .readLines()
     .foldIndexed(mutableListOf(mutableListOf<Int>())) { _, acc, item ->
-        if (item == "") {
-            acc.add(mutableListOf())
-        } else {
-            acc.last().add(item.toInt())
-        }
+        if (item.isBlank()) acc.add(mutableListOf()) else acc.last().add(item.toInt())
         acc
     }
     .maxOf { listOfCalories -> listOfCalories.sum() }
@@ -32,11 +28,7 @@ fun solvePuzzle01() = File(FILENAME)
 fun solvePuzzle02() = File(FILENAME)
     .readLines()
     .foldIndexed(mutableListOf(mutableListOf<Int>())) { _, acc, item ->
-        if (item == "") {
-            acc.add(mutableListOf())
-        } else {
-            acc.last().add(item.toInt())
-        }
+        if (item.isBlank()) acc.add(mutableListOf()) else acc.last().add(item.toInt())
         acc
     }
     .map { listOfCalories -> listOfCalories.sum() }
