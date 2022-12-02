@@ -3,8 +3,6 @@ package io.github.mwttg.adventofcode.day01
 import java.io.File
 import kotlin.system.measureTimeMillis
 
-private const val FILENAME = "./puzzle-inputs/day01/input.txt"
-
 fun main() {
     val max: Int
     val time1 = measureTimeMillis { max = getMaxCalories() }
@@ -15,21 +13,17 @@ fun main() {
     println("The combined calories of the top three Elves is $combined. This took $time2 ms.")
 }
 
-fun getMaxCalories() = File(FILENAME)
-    .readLines()
-    .fold(mutableListOf(mutableListOf<Int>())) { acc, item ->
-        if (item.isBlank()) acc.add(mutableListOf()) else acc.last().add(item.toInt())
-        acc
-    }
-    .maxOf { it.sum() }
+private fun getMaxCalories() = getCaloriesPerElf().maxOf { it.sum() }
 
-fun getCombinedCalories() = File(FILENAME)
-    .readLines()
-    .fold(mutableListOf(mutableListOf<Int>())) { acc, item ->
-        if (item.isBlank()) acc.add(mutableListOf()) else acc.last().add(item.toInt())
-        acc
-    }
+private fun getCombinedCalories() = getCaloriesPerElf()
     .map { it.sum() }
     .sortedDescending()
     .take(3)
     .sum()
+
+private fun getCaloriesPerElf() = File("./puzzle-inputs/day01/input.txt")
+    .readLines()
+    .fold(mutableListOf(mutableListOf<Int>())) { acc, item ->
+        if (item.isBlank()) acc.add(mutableListOf()) else acc.last().add(item.toInt())
+        acc
+    }
