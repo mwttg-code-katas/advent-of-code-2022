@@ -1,25 +1,21 @@
 package io.github.mwttg.adventofcode.day02
 
-private const val ROCK_SCORE = 1
-private const val PAPER_SCORE = 2
-private const val SCISSOR_SCORE = 3
+enum class Shape(private val points: Int) {
 
-enum class Shape {
-
-    ROCK,
-    PAPER,
-    SCISSOR;
+    ROCK(1),
+    PAPER(2),
+    SCISSOR(3);
 
     fun getScore(other: Shape): Int = when (Pair(this, other)) {
-        Pair(ROCK, ROCK) -> Result.DRAW.points + ROCK_SCORE
-        Pair(ROCK, PAPER) -> Result.LOSE.points + ROCK_SCORE
-        Pair(ROCK, SCISSOR) -> Result.WIN.points + ROCK_SCORE
-        Pair(PAPER, ROCK) -> Result.WIN.points + PAPER_SCORE
-        Pair(PAPER, PAPER) -> Result.DRAW.points + PAPER_SCORE
-        Pair(PAPER, SCISSOR) -> Result.LOSE.points + PAPER_SCORE
-        Pair(SCISSOR, ROCK) -> Result.LOSE.points + SCISSOR_SCORE
-        Pair(SCISSOR, PAPER) -> Result.WIN.points + SCISSOR_SCORE
-        Pair(SCISSOR, SCISSOR) -> Result.DRAW.points + SCISSOR_SCORE
+        Pair(ROCK, ROCK) -> Result.DRAW.points + ROCK.points
+        Pair(ROCK, PAPER) -> Result.LOSE.points + ROCK.points
+        Pair(ROCK, SCISSOR) -> Result.WIN.points + ROCK.points
+        Pair(PAPER, ROCK) -> Result.WIN.points + PAPER.points
+        Pair(PAPER, PAPER) -> Result.DRAW.points + PAPER.points
+        Pair(PAPER, SCISSOR) -> Result.LOSE.points + PAPER.points
+        Pair(SCISSOR, ROCK) -> Result.LOSE.points + SCISSOR.points
+        Pair(SCISSOR, PAPER) -> Result.WIN.points + SCISSOR.points
+        Pair(SCISSOR, SCISSOR) -> Result.DRAW.points + SCISSOR.points
         else -> throw Exception("Not Possible")
     }
 
