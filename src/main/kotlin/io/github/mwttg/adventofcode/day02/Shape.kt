@@ -19,6 +19,19 @@ enum class Shape(private val points: Int, private val symbol: String) {
         else -> throw Exception("Not Possible")
     }
 
+    fun getHand(result: Result) = when (Pair(this, result)) {
+        Pair(ROCK, Result.WIN) -> PAPER
+        Pair(ROCK, Result.DRAW) -> ROCK
+        Pair(ROCK, Result.LOSE) -> SCISSOR
+        Pair(PAPER, Result.WIN) -> SCISSOR
+        Pair(PAPER, Result.DRAW) -> PAPER
+        Pair(PAPER, Result.LOSE) -> ROCK
+        Pair(SCISSOR, Result.WIN) -> ROCK
+        Pair(SCISSOR, Result.DRAW) -> SCISSOR
+        Pair(SCISSOR, Result.LOSE) -> PAPER
+        else -> throw Exception("Not Possible")
+    }
+
     companion object {
 
         fun createFromSymbol(symbol: String) = when (symbol) {
