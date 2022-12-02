@@ -1,10 +1,10 @@
 package io.github.mwttg.adventofcode.day02
 
-enum class Shape(private val points: Int) {
+enum class Shape(private val points: Int, private val symbol: String) {
 
-    ROCK(1),
-    PAPER(2),
-    SCISSOR(3);
+    ROCK(1, "A"),
+    PAPER(2, "B"),
+    SCISSOR(3, "C");
 
     fun getScore(other: Shape): Int = when (Pair(this, other)) {
         Pair(ROCK, ROCK) -> Result.DRAW.points + ROCK.points
@@ -21,10 +21,17 @@ enum class Shape(private val points: Int) {
 
     companion object {
 
+        fun createFromSymbol(symbol: String) = when (symbol) {
+            ROCK.symbol -> ROCK
+            PAPER.symbol -> PAPER
+            SCISSOR.symbol -> SCISSOR
+            else -> throw Exception("Unknown symbol '$symbol'")
+        }
+
         fun createFrom(sign: String): Shape = when (sign) {
-            "A", "X" -> ROCK
-            "B", "Y" -> PAPER
-            "C", "Z" -> SCISSOR
+            "X" -> ROCK
+            "Y" -> PAPER
+            "Z" -> SCISSOR
             else -> throw Exception("Unknown sign '$sign'")
         }
     }

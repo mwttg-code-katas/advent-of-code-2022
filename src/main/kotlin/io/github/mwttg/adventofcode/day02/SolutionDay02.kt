@@ -15,5 +15,5 @@ private fun getScore() =
     File("./puzzle-inputs/day02/input.txt")
         .readLines()
         .map { it.split(SPACE) }
-        .map { Pair(Shape.createFrom(it[0]), Shape.createFrom(it[1])) }
+        .map { Pair(Shape.createFromSymbol(it[0]), Shape.createFrom(it[1])) }
         .sumOf { it.second.getScore(it.first) }
