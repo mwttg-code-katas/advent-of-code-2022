@@ -12,12 +12,28 @@ fun main() {
     val size: Int
     val time1 = measureTimeMillis { size = getSumOfMost100000() }
     println("The sum of directories < 100000 is '$size'. This took $time1 ms.")
+
+    val size2: Int
+    val time2 = measureTimeMillis {
+        val structure = getFolderSizes()
+        val needed = 30000000 - (70000000 - structure["root"]!!)
+        size2 = getSmallestDirForDelete(needed, structure)
+        println()
+    }
+    println("The total size of the smallest directory to delete is '$size2'. This took $time2 ms.")
 }
 
 fun getSumOfMost100000() = getFolderSizes()
     .map { it.value }
     .filter { it < 100000 }
     .sum()
+
+fun getSmallestDirForDelete(sizeNeeded: Int, dirStructure: Map<String, Int>) = dirStructure
+    .map { Pair(it.value, it.key) }
+    .toMap()
+    .filter { it.key > sizeNeeded }
+    .toList()
+    .sortedBy { it.first }[0].first
 
 fun getFolderSizes() = File(FILENAME)
     .readLines()
