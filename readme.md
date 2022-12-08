@@ -18,7 +18,7 @@
 | [Day 05][day05] | 60-70 ms | 80-100 ms |
 | [Day 06][day06] | 30-50 ms | 50-60 ms  |
 | [Day 07][day07] | 60-70 ms | 80-110 ms |
-| [Day 08][day08] | 70-80 ms |           |
+| [Day 08][day08] | 70-80 ms | 60-80 ms  |
 
 [comment]: # "List of URLs down below, sorted alphabetically DESC by tag"
 [advent-of-code]: https://adventofcode.com/2022/
