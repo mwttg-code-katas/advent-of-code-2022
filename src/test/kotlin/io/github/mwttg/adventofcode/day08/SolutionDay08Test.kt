@@ -17,8 +17,7 @@ internal class SolutionDay08Test {
     @Test
     fun `test example`() {
         val grid = Grid(TREE_HEIGHTS)
-        MarkTrees.markVisibleTrees(grid)
-        val actual = grid.getSumOfVisibleTrees()
+        val actual = CountTrees.countVisibleTrees(grid)
         expectThat(actual).isEqualTo(21)
     }
 }

@@ -2,73 +2,39 @@ package io.github.mwttg.adventofcode.day08
 
 object VisibleTrees {
 
-    fun getVisiblePositionLR(index: Int, row: List<Int>): Set<Position> =
-        getVisiblePositions(
-            index,
-            row,
-            this::horizontalPosition
-        )
+    fun fromLeftToRight(index: Int, row: List<Int>): Set<Position> =
+        getPositions(index, row, row.first(), row.indices, this::vPosition)
 
-    fun getVisiblePositionRL(index: Int, row: List<Int>): Set<Position> =
-        getVisiblePositionsReverse(
-            index,
-            row,
-            this::horizontalPosition
-        )
+    fun fromRightToLeft(index: Int, row: List<Int>): Set<Position> =
+        getPositions(index, row, row.last(), row.indices.reversed(), this::vPosition)
 
-    fun getVisiblePositionTB(index: Int, column: List<Int>): Set<Position> =
-        getVisiblePositions(
-            index,
-            column,
-            this::verticalPosition
-        )
+    fun fromTopToBottom(index: Int, column: List<Int>): Set<Position> =
+        getPositions(index, column, column.first(), column.indices, this::hPosition)
 
-    fun getVisiblePositionBT(index: Int, column: List<Int>): Set<Position> =
-        getVisiblePositionsReverse(
-            index,
-            column,
-            this::verticalPosition
-        )
+    fun fromBottomToTop(index: Int, column: List<Int>): Set<Position> =
+        getPositions(index, column, column.last(), column.indices.reversed(), this::hPosition)
 
-    private fun getVisiblePositions(
+    private fun getPositions(
         index: Int,
         items: List<Int>,
+        initialHeight: Int,
+        range: IntProgression,
         positionFunc: (index: Int, coordinate: Int) -> Position,
     ): Set<Position> {
         val positions = mutableSetOf<Position>()
-        var currentHeight = items.first()
-        val withCutEdges = items.drop(1).dropLast(1)
-        for (itemIndex in withCutEdges.indices) {
-            if (withCutEdges[itemIndex] <= currentHeight) {
+        var currentHeight = initialHeight
+        for (itemIndex in range) {
+            if (items[itemIndex] <= currentHeight) {
                 continue
             } else {
-                currentHeight = withCutEdges[itemIndex]
-                positions.add(positionFunc(index, itemIndex + 1))
+                currentHeight = items[itemIndex]
+                positions.add(positionFunc(index, itemIndex))
             }
         }
         return positions
     }
 
-    private fun getVisiblePositionsReverse(
-        index: Int,
-        items: List<Int>,
-        positionFunc: (index: Int, coordinate: Int) -> Position,
-    ): Set<Position> {
-        val positions = mutableSetOf<Position>()
-        var currentHeight = items.last()
-        val withCutEdges = items.drop(1).dropLast(1)
-        for (itemIndex in withCutEdges.size - 1 downTo 0) {
-            if (withCutEdges[itemIndex] <= currentHeight) {
-                continue
-            } else {
-                currentHeight = withCutEdges[itemIndex]
-                positions.add(positionFunc(index, itemIndex + 1))
-            }
-        }
-        return positions
-    }
+    private fun hPosition(index: Int, y: Int) = Position(index, y)
 
-    private fun verticalPosition(index: Int, y: Int) = Position(index, y)
-
-    private fun horizontalPosition(index: Int, x: Int) = Position(x, index)
+    private fun vPosition(index: Int, x: Int) = Position(x, index)
 }

@@ -15,12 +15,10 @@ fun main() {
     println("The max Scenic-Score is '$maxScenicScore'. This took $time2 ms.")
 }
 
-// I've a feeling that there is a 'better' solution with less code :/
 fun getVisibleTrees(): Int {
     val treeHeights = readTreeHeights()
     val grid = Grid(treeHeights)
-    MarkTrees.markVisibleTrees(grid)
-    return grid.getSumOfVisibleTrees()
+    return CountTrees.countVisibleTrees(grid)
 }
 
 fun readTreeHeights() = File(FILENAME)
