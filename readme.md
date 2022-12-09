@@ -9,17 +9,17 @@
 
 ## Solutions
 
-|       Day       |  Puzzle 1  | Puzzle 2  |
-|:---------------:|:----------:|:---------:|
-| [Day 01][day01] |  50-80 ms  | 70-110 ms |
-| [Day 02][day02] |  60-80 ms  | 60-80 ms  |
-| [Day 03][day03] |  45-55 ms  | 50-55 ms  |
-| [Day 04][day04] |  40-50 ms  | 40-50 ms  |
-| [Day 05][day05] |  60-70 ms  | 80-100 ms |
-| [Day 06][day06] |  30-50 ms  | 50-60 ms  |
-| [Day 07][day07] |  60-70 ms  | 80-110 ms |
-| [Day 08][day08] |  70-80 ms  | 60-80 ms  |
-| [Day 09][day09] | 550-650 ms |
+|       Day       |  Puzzle 1  |  Puzzle 2  |
+|:---------------:|:----------:|:----------:|
+| [Day 01][day01] |  50-80 ms  | 70-110 ms  |
+| [Day 02][day02] |  60-80 ms  |  60-80 ms  |
+| [Day 03][day03] |  45-55 ms  |  50-55 ms  |
+| [Day 04][day04] |  40-50 ms  |  40-50 ms  |
+| [Day 05][day05] |  60-70 ms  | 80-100 ms  |
+| [Day 06][day06] |  30-50 ms  |  50-60 ms  |
+| [Day 07][day07] |  60-70 ms  | 80-110 ms  |
+| [Day 08][day08] |  70-80 ms  |  60-80 ms  |
+| [Day 09][day09] | 550-650 ms | 600-700 ms |
 
 [comment]: # "List of URLs down below, sorted alphabetically DESC by tag"
 [advent-of-code]: https://adventofcode.com/2022/
