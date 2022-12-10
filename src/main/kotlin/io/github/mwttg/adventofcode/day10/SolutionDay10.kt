@@ -16,21 +16,21 @@ fun main() {
 
 fun getSignalStrength(): Int {
     val registerByCycle = programTimeline()
-    return CYCLES.sumOf {
-        val cycle = if (registerByCycle.containsKey(it)) it else it - 1
-        val registerX = registerByCycle[cycle]!!
-        it * registerX
-    }
+    return CYCLES.sumOf { registerByCycle[it]!! * it }
 }
 
 fun programTimeline() = File(FILENAME)
     .readLines()
     .map { it.split(SPACE) }
-    .scan(Pair(1, 1)) { acc, item ->
+    .scan(listOf(Pair(1, 1))) { acc, item ->
         when (item[0]) {
-            "addx" -> Pair(acc.first + item[1].toInt(), acc.second + 2)
-            "noop" -> Pair(acc.first, acc.second + 1)
+            "addx" -> listOf(
+                Pair(acc.last().first, acc.last().second + 1),
+                Pair(acc.last().first + item[1].toInt(), acc.last().second + 2),
+            )
+            "noop" -> listOf(Pair(acc.last().first, acc.last().second + 1))
             else -> throw Exception("not possible")
         }
     }
+    .flatten()
     .associate { Pair(it.second, it.first) }
