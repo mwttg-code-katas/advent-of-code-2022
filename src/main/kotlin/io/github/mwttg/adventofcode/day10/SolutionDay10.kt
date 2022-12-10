@@ -12,6 +12,10 @@ fun main() {
     val signalStrength: Int
     val time1 = measureTimeMillis { signalStrength = getSignalStrength() }
     println("The Signal-Strength is '$signalStrength'. This took $time1 ms.")
+
+    val time2 = measureTimeMillis { renderDisplay() }
+    println("This took $time2 ms.")
+
 }
 
 fun getSignalStrength(): Int {
@@ -34,3 +38,19 @@ fun programTimeline() = File(FILENAME)
     }
     .flatten()
     .associate { Pair(it.second, it.first) }
+
+fun renderDisplay() {
+    val registerByCycle = programTimeline()
+    for (row in 1..6) {
+        for (column in 1..40) {
+            val cycle = ((row - 1) * 40) + column
+            val registerX = registerByCycle[cycle]
+            if (registerX == column || registerX == column - 1 || registerX == column - 2) {
+                print("█")
+            } else {
+                print(" ")
+            }
+        }
+        println()
+    }
+}
