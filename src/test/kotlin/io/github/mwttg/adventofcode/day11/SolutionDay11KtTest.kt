@@ -7,10 +7,11 @@ import strikt.assertions.isEqualTo
 internal class SolutionDay11KtTest {
 
     @Test
-    fun `test example`() {
+    fun `test example - 20 rounds (normal)`() {
         val monkeysByIndex = createMonkeys().toMutableMap()
         for (round in 1..20) {
-            Round.execute(monkeysByIndex)
+            println("Round $round")
+            Round.execute(monkeysByIndex, false)
             Round.print(monkeysByIndex)
         }
         val sorted = monkeysByIndex.entries

@@ -2,24 +2,26 @@ package io.github.mwttg.adventofcode.day11
 
 import kotlin.system.measureTimeMillis
 
+// unfortunately solution for part 2 was not my idea :'(
+const val LCM = 19L * 3L * 13L * 7L * 5L * 11L * 17L * 2L
 
 fun main() {
-    val mostActive: Int
-    val time1 = measureTimeMillis { mostActive = getMostActives() }
+    val mostActive: Long
+    val time1 = measureTimeMillis { mostActive = getMostActives(10000, true) }
     println("The Level of Monkey-Business after 20 rounds is'$mostActive'. This took $time1 ms.")
 
 }
 
-fun getMostActives(): Int {
+fun getMostActives(rounds: Int, ridiculousLevels: Boolean): Long {
     val monkeysByIndex = createMonkeys().toMutableMap()
-    for (round in 1..20) {
-        Round.execute(monkeysByIndex)
+    for (round in 1..rounds) {
+        Round.execute(monkeysByIndex, ridiculousLevels)
     }
     val sorted = monkeysByIndex.entries
         .sortedBy { it.value.inspectedItems }
         .reversed()
 
-    return sorted[0].value.inspectedItems * sorted[1].value.inspectedItems
+    return sorted[0].value.inspectedItems.toLong() * sorted[1].value.inspectedItems.toLong()
 }
 
 private fun createMonkeys() = mapOf(

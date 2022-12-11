@@ -2,10 +2,10 @@ package io.github.mwttg.adventofcode.day11
 
 object Round {
 
-    fun execute(monkeys: MutableMap<Int, Monkey>) {
+    fun execute(monkeys: MutableMap<Int, Monkey>, ridiculousLevels:Boolean) {
         for (index in 0 until monkeys.size) {
             val monkey = monkeys[index]
-            val itemsWithTarget = monkey!!.getItemsWithTarget()
+            val itemsWithTarget = monkey!!.getItemsWithTarget(ridiculousLevels)
             distributeItems(itemsWithTarget, monkeys)
             val updatedSourceMonkey = monkey.removeItems()
             monkeys[index] = updatedSourceMonkey
@@ -13,7 +13,7 @@ object Round {
     }
 
     private fun distributeItems(
-        itemsWithTarget: List<Pair<Int, Int>>,
+        itemsWithTarget: List<Pair<Long, Int>>,
         monkeys: MutableMap<Int, Monkey>,
     ) {
         itemsWithTarget.forEach {
